@@ -1,0 +1,90 @@
+# Go Build & Cache Artifacts
+.gocache/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+*.prof
+*.cpu
+*.mem
+coverage.txt
+ps1emu
+ps1emu.exe
+
+# PS1 Emulator Files (BIOS, ROMs, Discs, Save States, Dumps)
+# BIOS Dumps
+bios/*.bin
+bios/*.BIN
+bios/*.rom
+bios/*.ROM
+
+# Disc Images & ROMs
+*.iso
+*.cue
+*.img
+*.mdf
+*.nrg
+*.pbp
+*.chd
+*.ecm
+cdrom/*.iso
+cdrom/*.cue
+cdrom/*.bin
+cdrom/*.BIN
+
+# Memory Cards & Save States
+*.mcd
+*.mcr
+*.sav
+*.state
+*.s0*
+*.st*
+*.srm
+*.psv
+saves/
+memcards/
+
+# Debug Dumps & Log Files
+*.log
+*.dmp
+*.dump
+trace.txt
+disasm.txt
+ram_dump.bin
+
+# IDE & Text Editor Configuration
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.*.swp
+.netrwhist
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Temporary Files & Environment Setup
+.env
+.env.local
+.env.*.local
+tmp/
+temp/
+scratch/
