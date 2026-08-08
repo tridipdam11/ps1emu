@@ -3,6 +3,8 @@ package memory
 import (
 	"encoding/binary"
 	"errors"
+
+	"ps1emu/dma"
 )
 
 const (
@@ -20,6 +22,7 @@ type Bus struct {
 	ram        []byte
 	scratchpad []byte
 	bios       []byte
+	DMA        *dma.DMA
 }
 
 func New() *Bus {
@@ -27,6 +30,7 @@ func New() *Bus {
 		ram:        make([]byte, MainRAMSize),
 		scratchpad: make([]byte, ScratchpadSize),
 		bios:       make([]byte, BIOSSize),
+		DMA:        dma.New(),
 	}
 }
 
@@ -72,6 +76,11 @@ func (b *Bus) Read16(addr uint32) uint16 {
 }
 
 func (b *Bus) Read32(addr uint32) uint32 {
+	phys := translateAddress(addr)
+	if phys >= dma.DMABaseAddress && phys < dma.DMABoundEnd {
+		return b.DMA.Read32(phys - dma.DMABaseAddress)
+	}
+
 	var buf [4]byte
 	buf[0] = b.Read8(addr)
 	buf[1] = b.Read8(addr + 1)
@@ -97,6 +106,12 @@ func (b *Bus) Write16(addr uint32, value uint16) {
 }
 
 func (b *Bus) Write32(addr uint32, value uint32) {
+	phys := translateAddress(addr)
+	if phys >= dma.DMABaseAddress && phys < dma.DMABoundEnd {
+		b.DMA.Write32(phys-dma.DMABaseAddress, value, b)
+		return
+	}
+
 	var buf [4]byte
 	binary.LittleEndian.PutUint32(buf[:], value)
 	b.Write8(addr, buf[0])

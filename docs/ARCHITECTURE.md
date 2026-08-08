@@ -61,7 +61,7 @@ This document provides a technical specification of the hardware modules emulate
 ## 🔄 Roadmap Components
 
 - [ ] **`gpu/`**: 2D/3D VRAM buffer, Command Buffer Processor, Polygon Renderer.
-- [ ] **`dma/`**: 7-Channel DMA Controller (MDEC in/out, GPU, CD-ROM, SPU, OTC, RAM).
+- [x] **`dma/`**: 7-Channel DMA Controller (MDEC in/out, GPU, CD-ROM, SPU, OTC, RAM).
 - [ ] **`spu/`**: Sound Processing Unit (24 ADPCM voices, Reverb buffer, Pitch modulation).
 - [ ] **`cdrom/`**: Disc image reader (`.bin`/`.cue`), sector buffer, IRQ delivery.
 - [ ] **`timers/`**: 3 Root Counters (Dotclock, H-Blank, System Clock).

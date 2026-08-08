@@ -58,3 +58,19 @@ func TestLoadBIOSRejectsWrongSize(t *testing.T) {
 		t.Fatalf("LoadBIOS returned %v, want %v", err, ErrInvalidBIOSSize)
 	}
 }
+
+func TestDMAMMIOAccess(t *testing.T) {
+	bus := New()
+
+	// DPCR register at 0x1F8010F0 / KSEG1 0xBF8010F0
+	defaultDPCR := bus.Read32(0xBF8010F0)
+	if defaultDPCR != 0x07654321 {
+		t.Fatalf("Read32(0xBF8010F0) = 0x%08X, want 0x07654321", defaultDPCR)
+	}
+
+	// Write new DPCR value
+	bus.Write32(0xBF8010F0, 0x12345678)
+	if got := bus.Read32(0x1F8010F0); got != 0x12345678 {
+		t.Fatalf("Read32(0x1F8010F0) = 0x%08X, want 0x12345678", got)
+	}
+}
