@@ -11,8 +11,8 @@
 *.cpu
 *.mem
 coverage.txt
-ps1emu
-ps1emu.exe
+/ps1emu
+/ps1emu.exe
 
 # PS1 Emulator Files (BIOS, ROMs, Discs, Save States, Dumps)
 # BIOS Dumps
